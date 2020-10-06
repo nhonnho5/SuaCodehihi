@@ -1,0 +1,58 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Assignment
+{
+    public static void main(String[] args) throws IOException {
+        if (args.length == 0)
+        {
+            System.out.println("file name expected");
+            System.exit(0);
+        }
+        else
+            System.out.println("Opening file " + args[0]);
+        
+        
+        FileInputStream data = new FileInputStream(args[0]);
+        System.out.println("Opening of file "+ args[0] + " successful");
+        
+
+        Scanner scanner = new Scanner(data);
+        
+        /// create new array sum and grant all of the elements value 0
+        int[] sum;
+        int count = scanner.nextInt();
+        sum = new int[count];
+        for (int i = 0; i < count; i++)
+        {
+            sum[i] = 0;
+        }
+        
+        /// add number of each columns to their sum (column 1 -> sum[1])
+        int a;
+        int k = 0; /// count how many numbers are there
+        while (scanner.hasNextInt() == true)
+        {
+            k++; /// count
+            int m = 1;
+            for (m = 1 ; m <= count; m++);
+            {
+                if (k%count == m) /// check columns
+                {
+                    a = scanner.nextInt();
+                    sum[m-1] = sum[m-1] + a;
+                }
+            }
+        }
+        
+        /// print out the result
+        String s = null;
+        for (int i = 0; i < count; i++)
+        {
+            s = s + sum[i]/(k/count) + " ";
+        }
+        
+        data.close();
+    }
+}
